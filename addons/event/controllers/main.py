@@ -27,12 +27,7 @@ class EventController(Controller):
     @route(['/event/update_sequence'], type='http', auth="user", website=True, methods=['POST'])
     def update_sequence(self, **post):
         try:
-            # Отримайте дані про порядок з POST-запиту
             sequence_data = post.get('sequence_data')
-            # Ваш код для оновлення порядку відповідно до sequence_data
-            # Наприклад, викличте метод вашої моделі, який оновлює порядок
-            # Поверніть успішну відповідь
             return Response('Sequence updated successfully', status=200)
         except Exception as e:
-            # Обробка помилок
             return Response(str(e), status=500)
