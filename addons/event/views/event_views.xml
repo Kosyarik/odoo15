@@ -316,6 +316,19 @@
                                         </field>
                                 </group>
                             </page>
+                            <page string="Training Programme" name="event_training_programme">
+                                <field name="training_programme_ids">
+                                    <tree string="Training Programme" editable="top">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="week" />
+                                        <field name="module"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+
+
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">

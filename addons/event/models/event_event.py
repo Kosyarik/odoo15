@@ -79,23 +79,15 @@ class EventType(models.Model):
             if not template.has_seats_limitation:
                 template.seats_max = 0
 
-class EventTrainingProgramme(models.Model):
-    _name = 'event.training.programme'
-    _description = 'Training Programme'
-
-    week = fields.Char(string="Week")
-    module = fields.Char(string="Module")
-    text = fields.Text(string="Text")
 
 class EventEvent(models.Model):
     """Event"""
     _name = 'event.event'
     _description = 'Event'
-    # _inherit = ['mail.thread', 'mail.activity.mixin']
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'event.event']
-
+    _inherit = 'event.event'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'date_begin'
-    # description
+     # description
     subtitle = fields.Char('Event Subtitle', translate=True)
     # eligibility
     eligibility_first = fields.Text(string="The I sentence")
@@ -117,6 +109,8 @@ class EventEvent(models.Model):
 
     # main event img
     main_image = fields.Char(string="Main Image URL")
+     # training_programme
+    training_programme_ids = fields.Many2many('training.programme', string='Training Programmes', copy=False)
 
     def _get_default_stage_id(self):
         return self.env['event.stage'].search([], limit=1)
