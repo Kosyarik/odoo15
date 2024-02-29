@@ -4,6 +4,7 @@
 from werkzeug.exceptions import NotFound
 
 from odoo.http import Controller, request, route, content_disposition
+from odoo import http
 
 
 class EventController(Controller):
@@ -31,3 +32,13 @@ class EventController(Controller):
             return Response('Sequence updated successfully', status=200)
         except Exception as e:
             return Response(str(e), status=500)
+
+    @http.route('/event/add_training_programme', type='http', auth='user', website=True)
+    def add_training_programme(self, **post):
+        # Code to handle adding a new training programme
+        return http.request.render('my_module.add_training_programme_template')
+
+    @http.route('/event/view_training_programme/<int:training_programme_id>', type='http', auth='user', website=True)
+    def view_training_programme(self, training_programme_id, **post):
+        # Code to handle viewing a training programme
+        return http.request.render('my_module.view_training_programme_template', {'training_programme_id': training_programme_id})
