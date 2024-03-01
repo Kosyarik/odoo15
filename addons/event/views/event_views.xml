@@ -191,9 +191,13 @@
                             <label for="name" string="Event Name11111"/>
                             <h1><field class="text-break" name="name" placeholder="e.g. Conference for Architects"/></h1>
                         </div>
-                           <div class="oe_title">
+                        <div class="oe_title">
                             <label for="name" string="Event subtitle"/>
-                                <h1><field class="text-break" name="subtitle" widget="text" style="height:100px;" placeholder="type description here"/></h1>
+                                <h1>
+                                <field name="subtitle" class="o_wevent_event_subtitle" widget="html" style="height:100px;" placeholder="type description here"/>
+
+                                <!-- <field class="text-break" name="subtitle" widget="text" style="height:100px;" placeholder="type description here"/> -->
+                                </h1>
                         </div>
                             <div style="display: flex; flex-direction: column; align-items: flex-start;">
                                 <label for="main_image" string="Main Image"/>
