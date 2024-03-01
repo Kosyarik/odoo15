@@ -36,9 +36,10 @@ class EventController(Controller):
     @http.route('/event/add_training_programme', type='http', auth='user', website=True)
     def add_training_programme(self, **post):
         # Code to handle adding a new training programme
-        return http.request.render('my_module.add_training_programme_template')
+        return http.request.render('training_programme_module.add_training_programme_template')
+
 
     @http.route('/event/view_training_programme/<int:training_programme_id>', type='http', auth='user', website=True)
     def view_training_programme(self, training_programme_id, **post):
         # Code to handle viewing a training programme
-        return http.request.render('my_module.view_training_programme_template', {'training_programme_id': training_programme_id})
+        return http.request.render('training_programme_module.view_training_programme_template', {'training_programme_id': training_programme_id})
