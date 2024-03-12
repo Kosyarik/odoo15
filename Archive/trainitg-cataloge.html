@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<t name="Events" t-name="website_event.index">
+    <t t-call="website.layout">
+        <div id="wrap" class="o_wevent_index">
+            <!-- Options -->
+            <t t-set="opt_events_list_cards" t-value="is_view_active('website_event.opt_events_list_cards')"/>
+            <t t-set="opt_events_list_columns" t-value="is_view_active('website_event.opt_events_list_columns')"/>
+            <!-- Topbar -->
+            <t t-call="website_event.index_topbar">
+                <t t-set="search" t-value="original_search or search or searches['search']"/>
+            </t>
+            <!-- Drag/Drop Area -->
+            <div id="oe_structure_we_index_1" class="oe_structure oe_empty"/>
+            <!-- Content -->
+            <div t-attf-class="o_wevent_events_list #{opt_events_list_cards and 'opt_event_list_cards_bg'}">
+                <div class="container">
+                    <div class="row">
+                        <t t-call="website_event.searched_tags"/>
+                    </div>
+                    <div class="row">
+                        <div id="o_wevent_index_main_col" t-attf-class="col-md my-5 #{opt_events_list_columns and 'opt_events_list_columns' or 'opt_events_list_rows'}">
+                            <div class="row">
+                                <!-- Events List -->
+                                <t t-call="website_event.events_list"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Drag/Drop Area -->
+            <div id="oe_structure_we_index_2" class="oe_structure oe_empty"/>
+        </div>
+    </t>
+</t>
+

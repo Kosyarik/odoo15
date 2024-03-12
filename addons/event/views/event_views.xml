@@ -188,7 +188,7 @@
                         <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                         <field name="kanban_state" widget="state_selection" class="ml-auto float-right"/>
                         <div class="oe_title">
-                            <label for="name" string="Event Name11111"/>
+                            <label for="name" string="Event Name1111111"/>
                             <h1><field class="text-break" name="name" placeholder="e.g. Conference for Architects"/></h1>
                         </div>
                         <div class="oe_title">
