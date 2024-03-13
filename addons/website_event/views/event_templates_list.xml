@@ -367,7 +367,7 @@
             display: none; /* Приховує іконку */
         }
     </style>
-    <nav class="mx-5" style="background-color: white;">
+    <nav class="" style="background-color: white; margin: 0 90px;">
         <div class="container-fluid new-index-topbar" style="flex-direction: column; margin-top: 100px;">
             <span class="" style="font-family: Lato; font-size: 56px; font-weight: 900; line-height: 78px; letter-spacing: 0em; text-align: center; color: #1B1B1B;margin-bottom: 50px;">I am looking for</span>
             <div class="w-100">
@@ -426,7 +426,7 @@
     </div>
     <!-- List -->
     <div class="row">
-        <div t-foreach="event_ids" t-as="event" style="margin-bottom: 80px; width: 270px;" class="event_card">
+        <div t-foreach="event_ids[:-4]" t-as="event" style="margin-bottom: 80px; width: 270px;" class="event_card">
             <a t-attf-href="/event/#{ slug(event) }/#{(not event.menu_id) and 'register'}" class="text-decoration-none" t-att-data-publish="event.website_published and 'on' or 'off'">
                 <article t-attf-class="h-100 #{opt_events_list_cards and 'card border-0 '}" itemscope="itemscope" itemtype="http://schema.org/Event">
                     <div class="h-100 row no-gutters">
@@ -471,11 +471,150 @@
 -->
 <!-- event_slider -->
 <template id="new_event_slider" name="Event Slider">
-    <div class="container my-5" style="display: flex; flex-direction: column;">
+
+    <style>
+    .event_slider_container.active:first-child {
+        margin-right: 20px;
+    }
+    .event_slider_container {
+        display: none;
+    }
+    .event_slider_container.active {
+        display: block;
+    }
+    .controls {
+        position: absolute;
+        top: 50%;
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;  
+    }
+    .prev {
+        margin-left: -40px;
+    }
+    .next {
+        margin-right: -40px;
+
+    }
+    </style>
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 45px;">
         <span class="text-center" style="font-family: Lato; font-size: 56px; font-weight: 900; line-height: 78px; letter-spacing: 0em; text-align: center; color: #1B1B1B; margin-bottom: 20px;">ILA Training Catalogue</span>
-        <span class="text-center" style="font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color: #5C5C5C;">ILA provides training on best practices in terms of sustainable Corporate Governance and many other relevant topics for Directors and Company Secretaries.</span>
+        <span class="text-center" style="width: 560px; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color: #5C5C5C;">ILA provides training on best practices in terms of sustainable Corporate Governance and many other relevant topics for Directors and Company Secretaries.</span>
     </div>
 
+    <div class="row" style="margin: 0px 65px; position: relative;">
+        <t t-foreach="event_ids[-4:]" t-as="event">
+
+            <div class="event_slider_container"  >
+                <main class="card-body" style="display: grid; grid-template-columns: 1fr 1fr; padding: 0px;">
+
+                    <div style="width: 319px;height: 405px">
+                        <a t-attf-href="/event/#{ slug(event) }/#{(not event.menu_id) and 'register'}" class="" t-att-data-publish="event.website_published and 'on' or 'off'">
+
+                        <img t-if="event.main_image" t-att-src="'data:image/png;base64,' + event.main_image" alt="Event Main Image" class="img-fluid mx-auto" style="width: 319px; height: 405px; object-fit: cover;" />
+                        <img t-if="not event.main_image" src="data:image/png;base64,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"  alt="Event Main Image" class="img-fluid mx-auto" style="width: 319px; height: 405px; object-fit: cover;" />
+                        </a>
+                    </div>
+                    <div style="background: black; color: white; width: 321px;">
+                            <div class="" style="padding-top: 80px; padding-left: 60px; display:flex; flex-direction:column;">
+                                <time itemprop="startDate" t-att-datetime="event.date_begin">
+                                    <span t-field="event.with_context(tz=event.date_tz).date_begin" t-options="{'date_only': 'true', 'format': 'short'}" style="color: #FFFFFF; "/>
+                                </time>                             
+                                <br/>
+                                <span t-field="event.name" itemprop="name" style="margin-top: 105px; font-family: Lato; font-size: 18px; font-weight: 900; line-height: 22px; letter-spacing: 0em; text-align: left; color: #FFFFFF;"/>
+                                <div itemprop="location" t-field="event.address_id" t-options="{'widget': 'contact', 'fields': ['city'], 'no_marker': 'true'}" style="margin-top: 5px;"/>
+                            </div>
+                        </div>
+                 
+                </main>
+            </div>
+        
+        </t>
+    <div class="controls">
+    <svg class="prev" width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_711_1842)">
+                <circle cx="41" cy="27" r="21" fill="white"/>
+            </g>
+            <path d="M34 27.2214H47" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M39.2432 32.4425L33.9998 27.2217L39.2432 22" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+                <filter id="filter0_d_711_1842" x="0" y="0" width="82" height="82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dy="14"/>
+                    <feGaussianBlur stdDeviation="10"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.898039 0 0 0 0 0.909804 0 0 0 0.6 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_711_1842"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_711_1842" result="shape"/>
+                </filter>
+            </defs>
+        </svg>
+        <svg class="next" width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_176_3524)">
+            <path d="M62 27C62 38.598 52.598 48 41 48C29.402 48 20 38.598 20 27C20 15.402 29.402 6 41 6C52.598 6 62 15.402 62 27Z" fill="white"/>
+            </g>
+            <path d="M47 27.2211H34" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M41.7568 22L47.0002 27.2208L41.7568 32.4425" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+            <filter id="filter0_d_176_3524" x="0" y="0" width="82" height="82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="14"/>
+            <feGaussianBlur stdDeviation="10"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.898039 0 0 0 0 0.909804 0 0 0 0.6 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_176_3524"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_176_3524" result="shape"/>
+            </filter>
+            </defs>
+        </svg>
+    </div>
+    </div>
+
+ 
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.event_slider_container');
+            let currentSlide = 0;
+
+            function showSlide(n) {
+                console.log('n', n)
+                console.log('slides.length', slides.length)
+                slides.forEach((slide) => {
+                    slide.classList.remove('active');
+                    slide.style.marginRight = '0';
+                });
+                slides[n].classList.add('active');
+                slides[n].style.marginRight = '20px';
+                if (n === slides.length - 1) {
+                    slides[0].classList.add('active');
+                    slides[0].style.marginRight = '20px';
+                    slides[n].style.marginRight = '0';
+
+                } else if (slides[n + 1]) {
+                    slides[n + 1].classList.add('active');
+                }
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            document.querySelector('.next').addEventListener('click', nextSlide);
+            document.querySelector('.prev').addEventListener('click', prevSlide);
+
+            showSlide(currentSlide);
+        });
+    </script>
 
 
 
