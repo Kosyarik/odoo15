@@ -482,6 +482,10 @@
     .event_slider_container.active {
         display: block;
     }
+    .slider_container {
+        display: flex;
+        justify-content: space-around;
+    }
     .controls {
         position: absolute;
         top: 42%;
@@ -491,10 +495,10 @@
         justify-content: space-between;  
     }
     .prev {
-        margin-left: -30px;
+        margin-left: -40px;
     }
     .next {
-        margin-right: -30px;
+        margin-right: -40px;
 
     }
     </style>
@@ -503,7 +507,7 @@
         <span class="text-center" style="width: 560px; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color: #5C5C5C;">ILA provides training on best practices in terms of sustainable Corporate Governance and many other relevant topics for Directors and Company Secretaries.</span>
     </div>
 
-    <div class="row" style="margin: 0px 65px; position: relative;">
+    <div class="slider_container" style="margin: 0px 65px; position: relative;">
         <t t-foreach="event_ids[-4:]" t-as="event">
 
             <div class="event_slider_container"  >
@@ -531,46 +535,46 @@
             </div>
         
         </t>
-    <div class="controls">
-    <svg class="prev" width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_d_711_1842)">
-                <circle cx="41" cy="27" r="21" fill="white"/>
-            </g>
-            <path d="M34 27.2214H47" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M39.2432 32.4425L33.9998 27.2217L39.2432 22" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-            <defs>
-                <filter id="filter0_d_711_1842" x="0" y="0" width="82" height="82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                    <feOffset dy="14"/>
-                    <feGaussianBlur stdDeviation="10"/>
-                    <feComposite in2="hardAlpha" operator="out"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.898039 0 0 0 0 0.909804 0 0 0 0.6 0"/>
-                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_711_1842"/>
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_711_1842" result="shape"/>
+        <div class="controls">
+        <svg class="prev" width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_711_1842)">
+                    <circle cx="41" cy="27" r="21" fill="white"/>
+                </g>
+                <path d="M34 27.2214H47" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M39.2432 32.4425L33.9998 27.2217L39.2432 22" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <filter id="filter0_d_711_1842" x="0" y="0" width="82" height="82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="14"/>
+                        <feGaussianBlur stdDeviation="10"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.898039 0 0 0 0 0.909804 0 0 0 0.6 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_711_1842"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_711_1842" result="shape"/>
+                    </filter>
+                </defs>
+            </svg>
+            <svg class="next" width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_176_3524)">
+                <path d="M62 27C62 38.598 52.598 48 41 48C29.402 48 20 38.598 20 27C20 15.402 29.402 6 41 6C52.598 6 62 15.402 62 27Z" fill="white"/>
+                </g>
+                <path d="M47 27.2211H34" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M41.7568 22L47.0002 27.2208L41.7568 32.4425" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                <filter id="filter0_d_176_3524" x="0" y="0" width="82" height="82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dy="14"/>
+                <feGaussianBlur stdDeviation="10"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.898039 0 0 0 0 0.909804 0 0 0 0.6 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_176_3524"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_176_3524" result="shape"/>
                 </filter>
-            </defs>
-        </svg>
-        <svg class="next" width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_d_176_3524)">
-            <path d="M62 27C62 38.598 52.598 48 41 48C29.402 48 20 38.598 20 27C20 15.402 29.402 6 41 6C52.598 6 62 15.402 62 27Z" fill="white"/>
-            </g>
-            <path d="M47 27.2211H34" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M41.7568 22L47.0002 27.2208L41.7568 32.4425" stroke="#1B1B1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-            <defs>
-            <filter id="filter0_d_176_3524" x="0" y="0" width="82" height="82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-            <feOffset dy="14"/>
-            <feGaussianBlur stdDeviation="10"/>
-            <feComposite in2="hardAlpha" operator="out"/>
-            <feColorMatrix type="matrix" values="0 0 0 0 0.890196 0 0 0 0 0.898039 0 0 0 0 0.909804 0 0 0 0.6 0"/>
-            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_176_3524"/>
-            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_176_3524" result="shape"/>
-            </filter>
-            </defs>
-        </svg>
-    </div>
+                </defs>
+            </svg>
+        </div>
     </div>
 
  

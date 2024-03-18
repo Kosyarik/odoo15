@@ -111,6 +111,9 @@ class EventEvent(models.Model):
     main_image = fields.Char(string="Main Image URL")
      # training_programme
     training_programme_ids = fields.Many2many('training.programme', string='Training Programmes', copy=False)
+    # Speakers
+    speaker_count = fields.Integer(string='Speaker Count')
+    speaker_ids = fields.Many2many('res.users', string='Speakers')
 
     def _get_default_stage_id(self):
         return self.env['event.stage'].search([], limit=1)

@@ -330,9 +330,17 @@
                                     </tree>
                                 </field>
                             </page>
-
-
-
+                            <page string="Speakers" name="event_speakers">
+                                <group>
+                                    <field name="speaker_count" class="oe_inline"/>
+                                    <div t-attf-class="o_speaker_fields o_speaker_fields_{{widget.speaker_count}}">
+                                        <t t-set="count" t-value="widget.speaker_count"/>
+                                        <t t-foreach="_.range(count)" t-as="index">
+                                            <field name="speaker_ids" string="Speaker #{index+1}" domain="[('share','=',False)]"/>
+                                        </t>
+                                    </div>
+                                </group>     
+                            </page>
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
