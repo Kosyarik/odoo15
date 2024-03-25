@@ -35,6 +35,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+.program_wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 130px;
+}
 
 .with-background_programme {
     background-image: url('data:image/svg+xml,%3Csvg width="661" height="1111" viewBox="0 0 661 1111" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Crect width="661" height="1111" fill="%23F1F3F6" fill-opacity="0.5"/%3E%3C/svg%3E');
@@ -50,12 +55,13 @@
                 75.04360961914062px 56.28270721435547px 56.28270721435547px 0px #6B7F9933;
 }
 
-.container_programme > div:nth-child(2) {
+.container_programme > div:nth-child(1) {
     margin-left: 20px;
     margin-top: 105px;
 }
-.container_programme > div:nth-child(1) img {
-    margin-top: 220px;
+.container_programme > div:nth-child(2) img {
+    margin: 60px 120px 150px 120px;
+    border-radius: 47px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -65,6 +71,16 @@
 }
 .card-header-content svg {
     margin-right: 20px;
+}
+.dowload_btn {
+    margin-top: 35px;
+    background-color: #0C111A;
+    width: 242px;
+    height: 53px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 .card-header-content h1 {
     font-family: Lato; 

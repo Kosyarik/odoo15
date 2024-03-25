@@ -20,6 +20,7 @@
                                 <div class="o_wevent_event_title" style="margin-top: -10px; margin-bottom: 20px; margin-left: 10px;">
                                     <span t-if="event.is_participating" class="badge text-bg-success o_wevent_badge">
                                         <i class="fa fa-check me-2"/>Registered                                    
+                                    
                                     </span>
                                     <h1 t-field="event.name" itemprop="name" placeholder="Event Title" style="font-family: Lato; font-size: 56px; font-weight: 700; line-height: 78px; letter-spacing: 0em; text-align: left; margin-bottom: 30px;"/>
                                     <!-- for html -->
@@ -32,31 +33,122 @@
                                     <div class="" style="margin-left: 10px;">
                                         <h6 class="" style="font-family: Lato; font-size: 20px; font-weight: 700; line-height: 24px; letter-spacing: 0em; text-align: left; color: #0C111A; margin-bottom: 20px;">Date &amp; Time</h6>
                                         <span style="font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;">Start:
+                                            
                                             <span style="font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;" t-field="event.date_begin" t-options="{'tz_name': event.date_tz, 'format': 'full', 'date_only': 'true'}" t-att-datetime="event.date_begin"/></span>
                                         <br/>
                                         <span style="font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;">End:
+                                            
                                             <span style="font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;" t-field="event.date_end" t-options="{'tz_name': event.date_tz, 'format': 'full', 'date_only': 'true'}"/></span>
                                     </div>
-
                                     <!-- Колонка 2: Venue -->
                                     <div class="">
                                         <h6 style="font-family: Lato; font-size: 20px; font-weight: 700; line-height: 24px; letter-spacing: 0em; text-align: left; color: #0C111A; margin-bottom: 20px;">Venue</h6>
                                         <!-- <div itemprop="location" class="mb-2" t-field="event.address_id" t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': True}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"/> -->
                                         <div itemprop="location" class="mb-2" t-field="event.address_id.street" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"/>
-
                                         <button type="button" class="btn btn-primary btn-block" id="registerButton" data-toggle="collapse" data-target="#registrationContent" style="width: 242px; height: 53px; border-radius: 3.6px; border: 1px solid; gap: 12px; background: #0C111A; color: #FFFFFF; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; margin-top: 40px;">Register</button>
                                         <div id="registrationContent" class="collapse">
                                             <t t-call="website_event.registration_template"/>
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- Кінець доданих колонок -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- second -->
+            </div>
+            <!-- Programme -->
+            <div class="" t-if="event.visibleForProgramme" style="margin-bottom: 50px;">
+                <div class="row  container_programme">
+                    <!-- Adjust column width to occupy full width -->
+                    <div class="program_wrapper" >
+                        <div class="program_container">
+                            <h1 style="font-family: Lato; font-size: 40px; font-weight: 900; line-height: 52px; letter-spacing: 0em; text-align: left; margin-bottom: 80px;">Programme outline</h1>
+                            <t t-foreach="range(event.counterForProgramme)" t-as="index">
+                                <div style="box-shadow: 0px 30px 30px 0px #CACACA40; padding: 50px; width: 535px; margin-bottom: 40px; border: 0px;">
+                                    <span style="font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left;">
+                                        <t t-esc="event['programme_text_' + str(index + 1)]"/>
+                                    </span>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                    <!-- Adjust column width to occupy full width -->
+                    <div class="with-background_programme overflow-hidden" style="">
+                        <img t-if="event.imageForProgramme" t-att-src="'data:image/png;base64,' + event.imageForProgramme" alt="Event Programme Image" class="img-fluid mx-auto img_programme"/>
+                    </div>
+                </div>
+            </div>
+            <!-- Training Programme -->
+            <div class="container" style="margin-top: 105px; margin-bottom: 50px;">
+                <div class="row">
+                    <div class="col-lg-6 o_draggable o_colored_level" style="padding-top: 103px;">
+                        <h1 style="font-family: Lato; font-size: 40px; font-weight: 900; line-height: 52px; letter-spacing: 0em; text-align: left;">Training programme</h1>
+                        <div style="width: 245px; height: 23px; padding: 24px 0; gap: 10px; display: inline-block;">
+                            <span style="font-family: Lato; font-size: 16px; font-weight: 900; line-height: 20px; letter-spacing: 0em; text-align: left;">Get started now</span>
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.2928 25.7071C17.1054 25.5195 17.0001 25.2652 17.0001 25C17.0001 24.7348 17.1054 24.4805 17.2928 24.2929L24.5858 17H5C4.73478 17 4.48043 16.8946 4.29289 16.7071C4.10536 16.5196 4 16.2652 4 16C4 15.7348 4.10536 15.4804 4.29289 15.2929C4.48043 15.1054 4.73478 15 5 15H24.5858L17.2928 7.70709C17.2 7.61422 17.1263 7.50398 17.0761 7.38265C17.0258 7.26131 17 7.13127 17 6.99995C17 6.86862 17.0259 6.73859 17.0761 6.61726C17.1264 6.49593 17.2 6.3857 17.2929 6.29284C17.3858 6.19998 17.496 6.12633 17.6173 6.07608C17.7387 6.02582 17.8687 5.99996 18 5.99997C18.1314 5.99998 18.2614 6.02585 18.3827 6.07611C18.5041 6.12637 18.6143 6.20004 18.7072 6.2929L27.7072 15.2929C27.7104 15.2961 27.7131 15.2997 27.7163 15.303C27.7361 15.3233 27.7552 15.3441 27.7732 15.366C27.7832 15.3782 27.792 15.3911 27.8014 15.4037C27.8115 15.4172 27.822 15.4305 27.8315 15.4446C27.8412 15.4592 27.8497 15.4743 27.8586 15.4893C27.8664 15.5023 27.8746 15.5151 27.8818 15.5286C27.8898 15.5436 27.8967 15.5591 27.9039 15.5744C27.9107 15.5887 27.9178 15.6027 27.9238 15.6173C27.9299 15.6321 27.9349 15.6472 27.9403 15.6622C27.9459 15.678 27.952 15.6936 27.9569 15.7097C27.9614 15.7247 27.9647 15.7399 27.9685 15.755C27.9727 15.7715 27.9773 15.7878 27.9806 15.8046C27.9841 15.8221 27.9861 15.8397 27.9887 15.8572C27.9908 15.8719 27.9936 15.8864 27.995 15.9013C27.9983 15.9341 28 15.967 28 16C28 16.033 27.9983 16.0659 27.995 16.0987C27.9936 16.1136 27.9908 16.128 27.9887 16.1428C27.9862 16.1603 27.9841 16.1779 27.9806 16.1954C27.9773 16.2121 27.9727 16.2285 27.9685 16.245C27.9647 16.2601 27.9614 16.2753 27.9569 16.2903C27.952 16.3064 27.9459 16.322 27.9403 16.3378C27.9349 16.3528 27.9299 16.3679 27.9238 16.3827C27.9178 16.3973 27.9106 16.4113 27.9039 16.4256C27.8967 16.4409 27.8898 16.4564 27.8818 16.4714C27.8746 16.4849 27.8664 16.4977 27.8586 16.5107C27.8497 16.5257 27.8412 16.5408 27.8315 16.5554C27.822 16.5695 27.8115 16.5828 27.8014 16.5963C27.792 16.6089 27.7832 16.6218 27.7732 16.634C27.7549 16.6563 27.7354 16.6775 27.7153 16.6981C27.7124 16.701 27.7101 16.7042 27.7072 16.7071L18.7072 25.7071C18.6143 25.8 18.504 25.8736 18.3827 25.9239C18.2614 25.9741 18.1313 26 18 26C17.8687 26 17.7386 25.9741 17.6173 25.9239C17.496 25.8736 17.3857 25.8 17.2928 25.7071Z" fill="#4F4F4F"/>
+                            </svg>
+                        </div>
+                        <a t-if="event.pdf_file" t-att-href="'/web/content/' + str(event.id) + '?download=true&amp;model=event.event&amp;field=pdf_file'" class="dowload_btn btn btn-primary btn-block"> Download PDF</a>
+                    </div>
+                    <div class="col-lg-6 pt16 pb16 o_draggable o_colored_level" style="padding: 50px 70px;">
+                        <t t-set="unique_weeks" t-value="[]" />
+                        <t t-foreach="event.training_programme_ids.sorted(key=lambda r: r.sequence)" t-as="training_programme">
+                            <!-- Check if the week is already processed -->
+                            <t t-if="training_programme.week not in unique_weeks">
+                                <!-- Add the week to the list of processed weeks -->
+                                <t t-set="unique_weeks" t-value="unique_weeks + [training_programme.week]" />
+                                <div>
+                                    <h1 t-att-style="'margin-bottom: 20px;  font-family: Lato; font-size: 20px; font-weight: 900; line-height: 24px; letter-spacing: 0em; text-align: left;' if training_programme == event.training_programme_ids[0] else 'margin-top: 80px; margin-bottom: 20px; font-family: Lato; font-size: 20px; font-weight: 900; line-height: 24px; letter-spacing: 0em; text-align: left;'">Week
+                                        
+                                        <t t-esc="training_programme.week"/>
+                                    </h1>
+                                    <t t-foreach="event.training_programme_ids.sorted(key=lambda r: r.sequence).filtered(lambda r: r.week == training_programme.week)" t-as="programme">
+                                        <div style="margin-bottom: 20px;">
+                                            <h1 style="margin-bottom: 20px; font-family: Lato; font-size: 20px; font-weight: 900; line-height: 24px; letter-spacing: 0em; text-align: left;">Module 
+                                                
+                                                <t t-esc="programme.module"/>
+                                            </h1>
+                                            <span style="margin-bottom: 20px; font-family: Lato; font-size: 18px; font-weight: 700; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;">
+                                                <t t-esc="programme.description"/>
+                                            </span>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <!-- Speakers -->
+            <div class="swiper mySwiper event-participants " style="margin: 0 100px;">
+                <h3 style="margin-bottom: 100px; font-family: Lato; font-size: 56px; font-weight: 900; line-height: 78px; letter-spacing: 0em; text-align: center; margin-left: 30px; margin-right: 30px;">Speakers</h3>
+                <div class="swiper-wrapper" style="margin-top: 50px;">
+                    <t t-foreach="event.speaker_ids" t-as="speaker" >
+                        <div class="swiper-slide col-lg-3 col-md-4 col-sm-6 " style="margin-bottom: 100px;">
+                            <div class="participant card" style="overflow: visible;">
+                                <t t-set="user" t-value="speaker"/>
+                                <div class="participant-body">
+                                    <t t-if="speaker.partner_id.image_1920">
+                                        <img class="card-img-top rounded-circle" t-att-src="'/web/image/' + 'res.partner/' + str(speaker.partner_id.id) + '/image_1920/' + speaker.partner_id.name + '?unique=' + str(speaker.partner_id.write_date)" alt="User Avatar" loading="lazy" style="margin-top: -50px; width: 138px; height: 138px; margin-bottom: 20px;"/>
+                                    </t>
+                                    <span class="speaker-name" t-esc="user.name"/>
+                                    <br/>
+                                    <span class="speaker-function" t-esc="user.function"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            
+            <!-- Eligibility -->
+            <div class="container">
                 <div class="row" style="margin-top: 150px; margin-bottom: 50px;">
                     <!-- Колонка 1 -->
                     <div class="col">
@@ -72,99 +164,13 @@
                             <!-- Колонка 1: Date & Time -->
                             <div class="" style="padding-top: 10px">
                                 <span t-esc="event.eligibility_first" style="font-family: Lato; font-size: 18px; font-weight: 400; color: #5C5C5C;  text-align: left;"/>
-
                             </div>
-
                             <!-- Колонка 2: Venue -->
                             <div class="" style="padding-top: 10px; padding-left: 30px;">
                                 <span t-esc="event.eligibility_second" style="font-family: Lato; font-size: 18px; font-weight: 400; color: #5C5C5C;  text-align: left;"/>
-
                             </div>
                         </div>
                         <!-- Кінець розділеного тексту -->
-                    </div>
-                </div>
-            </div>
-            <!-- Speakers -->
-            <div class="event-participants" style="margin: 0 100px;" >
-                <h3 style=" margin-bottom: 100px;font-family: Lato; font-size: 56px; font-weight: 900; line-height: 78px; letter-spacing: 0em; text-align: center; margin-left: 30px; margin-right: 30px;">Speakers</h3>
-                <div class="row justify-content-center">
-                    <t t-foreach="event.speaker_ids" t-as="speaker">
-                        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom: 100px;">
-                            <div class="participant card" style="overflow: visible;">
-                                <t t-set="user" t-value="speaker"/>
-                                <div class="participant-body" >
-                                    <t t-if="speaker.partner_id.image_1920">
-                                        <img class="card-img-top rounded-circle" t-att-src="'/web/image/' + 'res.partner/' + str(speaker.partner_id.id) + '/image_1920/' + speaker.partner_id.name + '?unique=' + str(speaker.partner_id.write_date)" alt="User Avatar" loading="lazy" 
-                                        style="margin-top: -50px; width: 138px; height: 138px; margin-bottom: 20px;"/>
-                                    </t>
-                                    <span class="speaker-name" t-esc="user.name"/>
-                                    <br/>
-                                    <span class="speaker-function" t-esc="user.function"/>
-                                </div>
-                            </div>
-                        </div>
-                    </t>
-                </div>
-            </div>
-            
-            <!-- Programme -->
-            <div class="" t-if="event.visibleForProgramme" style="margin-bottom: 50px;">
-                <div class="row  container_programme">
-                    <!-- Adjust column width to occupy full width -->
-                    <div class="with-background_programme overflow-hidden" style="">
-                        <img t-if="event.imageForProgramme" t-att-src="'data:image/png;base64,' + event.imageForProgramme" alt="Event Programme Image" class="img-fluid mx-auto img_programme"/>
-                    </div>
-                    <!-- Adjust column width to occupy full width -->
-                    <div class="" style="margin-left: 94px;">
-                        <h1 style="font-family: Lato; font-size: 40px; font-weight: 900; line-height: 52px; letter-spacing: 0em; text-align: left; margin-bottom: 80px;">Programme outline</h1>
-                        <t t-foreach="range(event.counterForProgramme)" t-as="index">
-                            <div style="box-shadow: 0px 30px 30px 0px #CACACA40; padding: 50px; width: 535px; margin-bottom: 40px; border: 0px;">
-                                <span style="font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left;">
-                                    <t t-esc="event['programme_text_' + str(index + 1)]"/>
-                                </span>
-                            </div>
-                        </t>
-                    </div>
-                </div>
-            </div>
-            <!-- Training Programme -->
-            <div class="container" style="margin-top: 105px; margin-bottom: 50px;">
-                <div class="row">
-                    <div class="col-lg-6 o_draggable o_colored_level" style="padding-top: 103px;">
-                        <h1 style="font-family: Lato; font-size: 40px; font-weight: 900; line-height: 52px; letter-spacing: 0em; text-align: left;">Training programme</h1>
-                        <div style="width: 245px; height: 23px; padding: 24px 0; gap: 10px; display: inline-block;">
-                            <span style="font-family: Lato; font-size: 16px; font-weight: 900; line-height: 20px; letter-spacing: 0em; text-align: left;">Get started now</span>
-                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.2928 25.7071C17.1054 25.5195 17.0001 25.2652 17.0001 25C17.0001 24.7348 17.1054 24.4805 17.2928 24.2929L24.5858 17H5C4.73478 17 4.48043 16.8946 4.29289 16.7071C4.10536 16.5196 4 16.2652 4 16C4 15.7348 4.10536 15.4804 4.29289 15.2929C4.48043 15.1054 4.73478 15 5 15H24.5858L17.2928 7.70709C17.2 7.61422 17.1263 7.50398 17.0761 7.38265C17.0258 7.26131 17 7.13127 17 6.99995C17 6.86862 17.0259 6.73859 17.0761 6.61726C17.1264 6.49593 17.2 6.3857 17.2929 6.29284C17.3858 6.19998 17.496 6.12633 17.6173 6.07608C17.7387 6.02582 17.8687 5.99996 18 5.99997C18.1314 5.99998 18.2614 6.02585 18.3827 6.07611C18.5041 6.12637 18.6143 6.20004 18.7072 6.2929L27.7072 15.2929C27.7104 15.2961 27.7131 15.2997 27.7163 15.303C27.7361 15.3233 27.7552 15.3441 27.7732 15.366C27.7832 15.3782 27.792 15.3911 27.8014 15.4037C27.8115 15.4172 27.822 15.4305 27.8315 15.4446C27.8412 15.4592 27.8497 15.4743 27.8586 15.4893C27.8664 15.5023 27.8746 15.5151 27.8818 15.5286C27.8898 15.5436 27.8967 15.5591 27.9039 15.5744C27.9107 15.5887 27.9178 15.6027 27.9238 15.6173C27.9299 15.6321 27.9349 15.6472 27.9403 15.6622C27.9459 15.678 27.952 15.6936 27.9569 15.7097C27.9614 15.7247 27.9647 15.7399 27.9685 15.755C27.9727 15.7715 27.9773 15.7878 27.9806 15.8046C27.9841 15.8221 27.9861 15.8397 27.9887 15.8572C27.9908 15.8719 27.9936 15.8864 27.995 15.9013C27.9983 15.9341 28 15.967 28 16C28 16.033 27.9983 16.0659 27.995 16.0987C27.9936 16.1136 27.9908 16.128 27.9887 16.1428C27.9862 16.1603 27.9841 16.1779 27.9806 16.1954C27.9773 16.2121 27.9727 16.2285 27.9685 16.245C27.9647 16.2601 27.9614 16.2753 27.9569 16.2903C27.952 16.3064 27.9459 16.322 27.9403 16.3378C27.9349 16.3528 27.9299 16.3679 27.9238 16.3827C27.9178 16.3973 27.9106 16.4113 27.9039 16.4256C27.8967 16.4409 27.8898 16.4564 27.8818 16.4714C27.8746 16.4849 27.8664 16.4977 27.8586 16.5107C27.8497 16.5257 27.8412 16.5408 27.8315 16.5554C27.822 16.5695 27.8115 16.5828 27.8014 16.5963C27.792 16.6089 27.7832 16.6218 27.7732 16.634C27.7549 16.6563 27.7354 16.6775 27.7153 16.6981C27.7124 16.701 27.7101 16.7042 27.7072 16.7071L18.7072 25.7071C18.6143 25.8 18.504 25.8736 18.3827 25.9239C18.2614 25.9741 18.1313 26 18 26C17.8687 26 17.7386 25.9741 17.6173 25.9239C17.496 25.8736 17.3857 25.8 17.2928 25.7071Z" fill="#4F4F4F"/>
-                                </svg>
-                                
-                        </div>
-                    </div>
-                    <div class="col-lg-6 pt16 pb16 o_draggable o_colored_level" style="padding: 50px 70px;">
-                        <t t-set="unique_weeks" t-value="[]" />
-                        <t t-foreach="event.training_programme_ids.sorted(key=lambda r: r.sequence)" t-as="training_programme">
-                            <!-- Check if the week is already processed -->
-                            <t t-if="training_programme.week not in unique_weeks">
-                                <!-- Add the week to the list of processed weeks -->
-                                <t t-set="unique_weeks" t-value="unique_weeks + [training_programme.week]" />
-                                <div>
-                                    <h1 t-att-style="'margin-bottom: 20px;  font-family: Lato; font-size: 20px; font-weight: 900; line-height: 24px; letter-spacing: 0em; text-align: left;' if training_programme == event.training_programme_ids[0] else 'margin-top: 80px; margin-bottom: 20px; font-family: Lato; font-size: 20px; font-weight: 900; line-height: 24px; letter-spacing: 0em; text-align: left;'">Week
-                                        <t t-esc="training_programme.week"/>
-                                    </h1>
-                                    <t t-foreach="event.training_programme_ids.sorted(key=lambda r: r.sequence).filtered(lambda r: r.week == training_programme.week)" t-as="programme">
-                                        <div style="margin-bottom: 20px;">
-                                            <h1 style="margin-bottom: 20px; font-family: Lato; font-size: 20px; font-weight: 900; line-height: 24px; letter-spacing: 0em; text-align: left;">Module 
-                                                <t t-esc="programme.module"/>
-                                            </h1>
-                                            <span style="margin-bottom: 20px; font-family: Lato; font-size: 18px; font-weight: 700; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;">
-                                                <t t-esc="programme.description"/>
-                                            </span>
-                                        </div>
-                                    </t>
-                                </div>
-                            </t>
-                        </t>
                     </div>
                 </div>
             </div>
@@ -350,69 +356,61 @@
                     <div style="col">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2586.8831141215232!2d6.112924477449833!3d49.58109374957576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795491d7b8d395f%3A0xe4ccb02f78f5b678!2sINNSiDE%20by%20Meli%C3%A1%20Luxembourg!5e0!3m2!1sru!2sua!4v1709556616646!5m2!1sru!2sua" width="500" height="420" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-        
                     <div class="col" style="margin-left: 90px;">
-                    <h6 style="font-family: Lato; font-size: 40px; font-weight: 900; line-height: 52px; letter-spacing: 0em; text-align: left; padding-top: 30px; padding-bottom: 20px;">Venue</h6>
-                    <div style="display: flex; align-items: center;">
-                        <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 8.31776C0.5 3.71789 4.34388 0 8.99345 0C13.6561 0 17.5 3.71789 17.5 8.31776C17.5 10.6357 16.657 12.7876 15.2695 14.6116C13.7388 16.6235 11.8522 18.3765 9.72854 19.7524C9.24251 20.0704 8.80387 20.0944 8.27045 19.7524C6.13474 18.3765 4.24809 16.6235 2.7305 14.6116C1.34198 12.7876 0.5 10.6357 0.5 8.31776ZM6.19423 8.57675C6.19423 10.1177 7.45166 11.3297 8.99345 11.3297C10.5362 11.3297 11.8058 10.1177 11.8058 8.57675C11.8058 7.0478 10.5362 5.77683 8.99345 5.77683C7.45166 5.77683 6.19423 7.0478 6.19423 8.57675Z" fill="#0C111A"/>
-                        </svg>
-                        <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 15px;">
-                            <div itemprop="location" class="mb-2" t-field="event.address_id.street" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
-                            <div itemprop="location" class="mb-2" t-field="event.address_id.street2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
-                            <div style="display: flex; flex-direction: row;">
-                                <div itemprop="location" class="mb-2" t-field="event.address_id.zip" style=" padding-right: 5px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
-                                <div itemprop="location" class="mb-2" t-field="event.address_id.city" style="padding-right: 5px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
-                                <div style="padding-right: 5px;padding-left: 5px;">-</div>
-                                <div itemprop="location" class="mb-2" t-field="event.address_id.country_id" style="padding-right: 5px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
+                        <h6 style="font-family: Lato; font-size: 40px; font-weight: 900; line-height: 52px; letter-spacing: 0em; text-align: left; padding-top: 30px; padding-bottom: 20px;">Venue</h6>
+                        <div style="display: flex; align-items: center;">
+                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 8.31776C0.5 3.71789 4.34388 0 8.99345 0C13.6561 0 17.5 3.71789 17.5 8.31776C17.5 10.6357 16.657 12.7876 15.2695 14.6116C13.7388 16.6235 11.8522 18.3765 9.72854 19.7524C9.24251 20.0704 8.80387 20.0944 8.27045 19.7524C6.13474 18.3765 4.24809 16.6235 2.7305 14.6116C1.34198 12.7876 0.5 10.6357 0.5 8.31776ZM6.19423 8.57675C6.19423 10.1177 7.45166 11.3297 8.99345 11.3297C10.5362 11.3297 11.8058 10.1177 11.8058 8.57675C11.8058 7.0478 10.5362 5.77683 8.99345 5.77683C7.45166 5.77683 6.19423 7.0478 6.19423 8.57675Z" fill="#0C111A"/>
+                            </svg>
+                            <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 15px;">
+                                <div itemprop="location" class="mb-2" t-field="event.address_id.street" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
+                                <div itemprop="location" class="mb-2" t-field="event.address_id.street2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
+                                <div style="display: flex; flex-direction: row;">
+                                    <div itemprop="location" class="mb-2" t-field="event.address_id.zip" style=" padding-right: 5px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
+                                    <div itemprop="location" class="mb-2" t-field="event.address_id.city" style="padding-right: 5px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
+                                    <div style="padding-right: 5px;padding-left: 5px;">-</div>
+                                    <div itemprop="location" class="mb-2" t-field="event.address_id.country_id" style="padding-right: 5px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div style="display: flex; margin-top: 95px; align-items: center;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5317 12.4724C15.5208 16.4604 16.4258 11.8467 18.9656 14.3848C21.4143 16.8328 22.8216 17.3232 19.7192 20.4247C19.3306 20.737 16.8616 24.4943 8.1846 15.8197C-0.493478 7.144 3.26158 4.67244 3.57397 4.28395C6.68387 1.17385 7.16586 2.58938 9.61449 5.03733C12.1544 7.5765 7.54266 8.48441 11.5317 12.4724Z" fill="#0C111A"/>
+                        <div style="display: flex; margin-top: 95px; align-items: center;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5317 12.4724C15.5208 16.4604 16.4258 11.8467 18.9656 14.3848C21.4143 16.8328 22.8216 17.3232 19.7192 20.4247C19.3306 20.737 16.8616 24.4943 8.1846 15.8197C-0.493478 7.144 3.26158 4.67244 3.57397 4.28395C6.68387 1.17385 7.16586 2.58938 9.61449 5.03733C12.1544 7.5765 7.54266 8.48441 11.5317 12.4724Z" fill="#0C111A"/>
                             </svg>
-                            
-                        <div style="padding-left: 15px;">
-                            <div itemprop="location" class="mb-2" t-field="event.organizer_id.phone" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"/>
+                            <div style="padding-left: 15px;">
+                                <div itemprop="location" class="mb-2" t-field="event.organizer_id.phone" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"/></div>
+                        </div>
+                        <div style="display: flex; margin-top: 40px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9395 3C18.2805 3 19.5705 3.53 20.5195 4.481C21.4695 5.43 22.0005 6.71 22.0005 8.05V15.95C22.0005 18.74 19.7305 21 16.9395 21H7.06049C4.26949 21 2.00049 18.74 2.00049 15.95V8.05C2.00049 5.26 4.25949 3 7.06049 3H16.9395ZM18.5305 9.54L18.6105 9.46C18.8495 9.17 18.8495 8.75 18.5995 8.46C18.4605 8.311 18.2695 8.22 18.0705 8.2C17.8605 8.189 17.6605 8.26 17.5095 8.4L13.0005 12C12.4205 12.481 11.5895 12.481 11.0005 12L6.50049 8.4C6.18949 8.17 5.75949 8.2 5.50049 8.47C5.23049 8.74 5.20049 9.17 5.42949 9.47L5.56049 9.6L10.1105 13.15C10.6705 13.59 11.3495 13.83 12.0605 13.83C12.7695 13.83 13.4605 13.59 14.0195 13.15L18.5305 9.54Z" fill="#0C111A"/>
+                            </svg>
+                            <div >
+                                <div itemprop="location" class="mb-2" t-field="event.organizer_id.email" style="padding-left: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"/></div>
                         </div>
                     </div>
-                    
-                    <div style="display: flex; margin-top: 40px;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9395 3C18.2805 3 19.5705 3.53 20.5195 4.481C21.4695 5.43 22.0005 6.71 22.0005 8.05V15.95C22.0005 18.74 19.7305 21 16.9395 21H7.06049C4.26949 21 2.00049 18.74 2.00049 15.95V8.05C2.00049 5.26 4.25949 3 7.06049 3H16.9395ZM18.5305 9.54L18.6105 9.46C18.8495 9.17 18.8495 8.75 18.5995 8.46C18.4605 8.311 18.2695 8.22 18.0705 8.2C17.8605 8.189 17.6605 8.26 17.5095 8.4L13.0005 12C12.4205 12.481 11.5895 12.481 11.0005 12L6.50049 8.4C6.18949 8.17 5.75949 8.2 5.50049 8.47C5.23049 8.74 5.20049 9.17 5.42949 9.47L5.56049 9.6L10.1105 13.15C10.6705 13.59 11.3495 13.83 12.0605 13.83C12.7695 13.83 13.4605 13.59 14.0195 13.15L18.5305 9.54Z" fill="#0C111A"/>
-                            </svg>
-                            
-                            
-                        <div >
-                            <div itemprop="location" class="mb-2" t-field="event.organizer_id.email" style="padding-left: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left; color: #5C5C5C;"/>
-                        </div>
-                    </div>
-
                 </div>
-                </div>
-
-        </div>
-                <!-- Registration & fees -->
+            </div>
+            <!-- Registration & fees -->
             <div class="container" style="margin-top: 130px; margin-bottom: 50px;">
                 <div class="row">
                     <div class="">
                         <h1 style="font-family: Lato; font-size: 40px; font-weight: 900; line-height: 52px; letter-spacing: 0em; text-align: left;">Registration &amp; fees</h1>
-                        <p style="width:515px; font-family:Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left;">Ready to enroll? Even if the dates still need to be updated, you can already fill in the attached registration form and send it back to <a href="mailto:certifications@ila.lu" style="color: blue; text-decoration: underline;">certifications@ila.lu</a>.</p>
+                        <p style="width:515px; font-family:Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: left;">Ready to enroll? Even if the dates still need to be updated, you can already fill in the attached registration form and send it back to 
+                            <a href="mailto:certifications@ila.lu" style="color: blue; text-decoration: underline;">certifications@ila.lu</a>.
+                        </p>
                         <button type="button" class="btn btn-primary btn-block" id="registerButton" data-toggle="collapse" data-target="#registrationContent" style="width: 150px; height: 50px; border-radius: 3.6px; border: 1px solid; gap: 12px; background: #0C111A; color: #FFFFFF; font-family: Lato; font-size: 18px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; margin-top: 40px;">Register</button>
                         <div id="registrationContent" class="collapse">
                             <t t-call="website_event.registration_template"/>
-                        </div> 
+                        </div>
                     </div>
                     <div class="col"></div>
                 </div>
-              
-         
             </div>
-
             <t t-set="hide_cover_div" t-value="True"/>
             <t t-call="website_event.registration_configure_tickets_button"/>
-
         </section>
     </t>
 </t>
