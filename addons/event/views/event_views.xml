@@ -188,7 +188,7 @@
                         <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                         <field name="kanban_state" widget="state_selection" class="ml-auto float-right"/>
                         <div class="oe_title">
-                            <label for="name" string="Event Name1111111"/>
+                            <label for="name" string="Event Title"/>
                             <h1><field class="text-break" name="name" placeholder="e.g. Conference for Architects"/></h1>
                         </div>
                         <div class="oe_title">
@@ -321,7 +321,11 @@
                                 </group>
                             </page>
                             <page string="Training Programme" name="event_training_programme">
-                                <field name="training_programme_ids">
+                                <group>
+                                    <field name="pdf_file" filename="true"/>
+                             
+                                </group>
+                               <field name="training_programme_ids">
                                     <tree string="Training Programme" editable="top">
                                         <field name="sequence" widget="handle"/>
                                         <field name="week" />
@@ -334,7 +338,6 @@
                                 <group>
                                     <field name="speaker_count" class="oe_inline"/>
                                     <div t-attf-class="o_speaker_fields o_speaker_fields_{{widget.speaker_count}}">
-                                        <t t-set="count" t-value="widget.speaker_count"/>
                                         <t t-foreach="_.range(count)" t-as="index">
                                             <field name="speaker_ids" string="Speaker #{index+1}" domain="[('share','=',False)]"/>
                                         </t>

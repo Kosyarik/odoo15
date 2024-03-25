@@ -111,6 +111,19 @@ class EventEvent(models.Model):
     main_image = fields.Char(string="Main Image URL")
      # training_programme
     training_programme_ids = fields.Many2many('training.programme', string='Training Programmes', copy=False)
+    pdf_file = fields.Binary(string="PDF File", attachment=True)
+    new_pdf_file = fields.Binary(string="New PDF File")
+    def delete_pdf_file(self):
+        for event in self:
+            if event.pdf_file:
+                event.pdf_file = False
+
+    def save_pdf_file(self):
+        for event in self:
+            if event.new_pdf_file:
+                event.pdf_file = event.new_pdf_file
+                event.new_pdf_file = False
+
     # Speakers
     speaker_count = fields.Integer(string='Speaker Count')
     speaker_ids = fields.Many2many('res.users', string='Speakers')
